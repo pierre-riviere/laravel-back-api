@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Http\Resources\CompanyResource;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -15,6 +16,7 @@ class CompanyController extends Controller
     public function index()
     {
         return Company::all();
+        //return CompanyResource::collection(Company::all());
     }
 
     /**
@@ -37,6 +39,7 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         return $company;
+        //return new CompanyResource($company);
     }
 
     /**
