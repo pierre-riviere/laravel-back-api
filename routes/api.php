@@ -29,4 +29,4 @@ Route::middleware('api')->prefix('auth')->namespace('Auth')->group(function () {
     Route::post('me', 'AuthController@me');
 });
 
-//Route::apiResource('companies', 'CompanyController');
+Route::apiResource('test', 'TestController');
