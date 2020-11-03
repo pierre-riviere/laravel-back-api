@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MarvelController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +32,4 @@ Route::middleware('api')->prefix('auth')->namespace('Auth')->group(function () {
 });
 
 //Route::apiResource('companies', 'CompanyController');
+Route::get('/marvel/characters', [MarvelController::class, 'characters']);
