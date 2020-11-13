@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarvelController;
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,20 +15,27 @@ use App\Http\Controllers\MarvelController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware("auth:api")->get("/user", function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:api')->group(function () {
-    Route::apiResource('companies', 'CompanyController');
+Route::middleware("auth:api")->group(function () {
+    Route::apiResource("companies", "CompanyController");
 });
 
-Route::middleware('api')->prefix('auth')->namespace('Auth')->group(function () {
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-});
+Route::middleware("api")
+    ->prefix("auth")
+    ->namespace("Auth")
+    ->group(function () {
+        Route::post("login", "AuthController@login");
+        Route::post("logout", "AuthController@logout");
+        Route::post("refresh", "AuthController@refresh");
+        Route::post("me", "AuthController@me");
+    });
 
 //Route::apiResource('companies', 'CompanyController');
-Route::get('/marvel/characters', [MarvelController::class, 'characters']);
+Route::get("/characters/list", [MarvelController::class, "characters"]);
+Route::post("/characters/favorite", [
+    MarvelController::class,
+    "addFavoriteCharacter",
+]);
